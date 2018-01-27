@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags: []
+=======
+  tags:
+  - Gregg
+  - Blanche
+>>>>>>> 059601c20e0b01767a7fa216d40ba660efeb884c
   layers:
   - Default
   - TransparentFX
