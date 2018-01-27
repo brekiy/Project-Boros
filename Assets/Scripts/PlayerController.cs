@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    //State
+
+    
+
+    //Physics
+
     private float playerMaxSpeed = 10;
     private float cameraSpeed = 150;
 
@@ -12,7 +18,7 @@ public class PlayerController : MonoBehaviour {
     private float gravityStrength = -10f;
     Vector3 gravity = Vector3.zero;
 
-    private float jumpStrength = 100f;
+    private float jumpStrength = 9f;
 
     Vector3 playerVelocity = Vector3.zero;
     Vector3 moveDir = Vector3.zero;
@@ -20,30 +26,47 @@ public class PlayerController : MonoBehaviour {
     Rigidbody rb;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
+    }
+
+    void SetPlayerSpeed(float speed, float accel)
+    {
+        playerMaxSpeed = speed;
+        playerAccel = accel;
+    }
+
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, GetComponent<Collider>().bounds.extents.y + 0.1f);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
         moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         moveDir = transform.TransformDirection(moveDir);
         moveDir = Vector3.ClampMagnitude(moveDir, 1);
 
-        playerVelocity.x = playerVelocity.x - (0.5f * playerAccel * Mathf.Sign(playerVelocity.x));
-        playerVelocity.z = playerVelocity.z - (0.5f * playerAccel * Mathf.Sign(playerVelocity.z));
+        playerVelocity.y = 0f;
 
-        playerVelocity.y = rb.velocity.y;
+        playerVelocity.x = playerVelocity.x - (Mathf.Min(0.5f, Mathf.Abs(playerVelocity.x)) * playerAccel * Mathf.Sign(playerVelocity.x));
+        playerVelocity.z = playerVelocity.z - (Mathf.Min(0.5f, Mathf.Abs(playerVelocity.z)) * playerAccel * Mathf.Sign(playerVelocity.z));
 
         playerVelocity = playerVelocity + (playerAccel * moveDir);
         playerVelocity = Vector3.ClampMagnitude(playerVelocity, playerMaxSpeed);
 
+        playerVelocity.y = rb.velocity.y;
+
         if (Input.GetButtonDown("Jump"))
         {
-            playerVelocity.y += jumpStrength;
+            if (IsGrounded())
+            {
+                playerVelocity.y += jumpStrength;
+            }
+            
         }
 
         rb.velocity = (playerVelocity);
