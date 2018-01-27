@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class GreggController : MonoBehaviour {
 
     //State
 
-    
+    private string playerState = "idle";
 
     //Physics
 
-    private float playerMaxSpeed = 10;
+    private float playerMaxSpeed = 8;
     private float cameraSpeed = 150;
 
     private float playerAccel = 1f;
@@ -18,10 +18,10 @@ public class PlayerController : MonoBehaviour {
     private float gravityStrength = -10f;
     Vector3 gravity = Vector3.zero;
 
-    private float jumpStrength = 9f;
-
     Vector3 playerVelocity = Vector3.zero;
     Vector3 moveDir = Vector3.zero;
+
+    Vector3 v3Rotate = Vector3.zero;
 
     Rigidbody rb;
 
@@ -52,29 +52,27 @@ public class PlayerController : MonoBehaviour {
 
         playerVelocity.y = 0f;
 
-        playerVelocity.x = playerVelocity.x - (Mathf.Min(0.5f, Mathf.Abs(playerVelocity.x)) * playerAccel * Mathf.Sign(playerVelocity.x));
-        playerVelocity.z = playerVelocity.z - (Mathf.Min(0.5f, Mathf.Abs(playerVelocity.z)) * playerAccel * Mathf.Sign(playerVelocity.z));
-
-        playerVelocity = playerVelocity + (playerAccel * moveDir);
-        playerVelocity = Vector3.ClampMagnitude(playerVelocity, playerMaxSpeed);
+        if (IsGrounded())
+        {
+            playerVelocity -= Vector3.ClampMagnitude(playerVelocity,playerAccel*0.5f);
+            playerVelocity += (playerAccel * moveDir);
+            playerVelocity = Vector3.ClampMagnitude(playerVelocity, playerMaxSpeed);
+            playerVelocity.y = rb.velocity.y;
+        }
+        else
+        {
+            playerVelocity.y = rb.velocity.y;
+        }
 
         playerVelocity.y = rb.velocity.y;
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (IsGrounded())
-            {
-                playerVelocity.y += jumpStrength;
-            }
-            
-        }
 
         rb.velocity = (playerVelocity);
         gravity.y = gravityStrength;
         rb.AddForce(gravity);
 
         var cy = Input.GetAxis("CamHorizontal") * Time.deltaTime * cameraSpeed;
-        
-        transform.Rotate(0, cy, 0);
+        v3Rotate.y += cy;
+
+        transform.localEulerAngles = v3Rotate;
     }
 }

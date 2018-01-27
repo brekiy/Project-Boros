@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
     Vector3 v3Rotate = Vector3.zero;
-    int minAngle = -50;
-    int maxAngle = 60;
+    int minAngle = -25;
+    int maxAngle = 25;
 
     float cameraSpeed = 150;
 
