@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    float playerSpeed = 5;
+    float cameraSpeed = 150;
+
+    // Use this for initialization
+    void Start () {
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 3.0f;
-        var y = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+        var x = Input.GetAxis("Horizontal") * Time.deltaTime * playerSpeed;
+        var z = Input.GetAxis("Vertical") * Time.deltaTime * playerSpeed;
 
-        var cy = Input.GetAxis("CamVertical") * Time.deltaTime * 150.0f;
-
-        transform.Translate(x, 0, y);
+        var cy = Input.GetAxis("CamHorizontal") * Time.deltaTime * cameraSpeed;
+        
+        transform.Translate(x, 0, z);
         transform.Rotate(0, cy, 0);
     }
 }
