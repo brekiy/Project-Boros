@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< Updated upstream
 - path: Assets/Scenes/Swap Gregg.unity
-=======
-- path: Assets/Scenes/work_xiao.unity
->>>>>>> Stashed changes
   isLoaded: 1
   isActive: 1

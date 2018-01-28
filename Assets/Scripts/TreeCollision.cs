@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class TreeCollision : MonoBehaviour {
 
+    public float damageAmount;
 
-
-    private void Start()
+    public void Damage(float amount)
     {
-        
+        damageAmount = amount;
     }
 
     // Use this for initialization
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<HealthScript>())
+        if (damageAmount > 0 && other.GetComponent<HealthScript>())
         {
-            other.GetComponent<HealthScript>().DoDamage(5f, 50);
+            other.GetComponent<HealthScript>().DoDamage(damageAmount, 50);
         }
         
     }
