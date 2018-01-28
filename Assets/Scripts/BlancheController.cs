@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class BlancheController : MonoBehaviour {
 
-  //State
+   
 
-  HealthStamDisplay playerHealthStam;
-
-    private string playerState = "idle";
+    HealthStamDisplay playerHealthStam;
     
     //Physics
 
@@ -22,6 +20,7 @@ public class BlancheController : MonoBehaviour {
 
     private float jumpStrength = 9f;
     public float jumpCost;
+    public float attackCost;
 
     public Vector3 playerVelocity = Vector3.zero;
     Vector3 moveDir = Vector3.zero;
@@ -30,11 +29,18 @@ public class BlancheController : MonoBehaviour {
 
     Rigidbody rb;
 
+    GameObject sword;
+    //State
+    public enum PlayerState { idle, lightAttack, heavyAttack, dead }
+    public PlayerState playerState;
+
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerHealthStam = GetComponent<HealthStamDisplay>();
+        sword = GameObject.FindGameObjectWithTag("Steward");
+        playerState = PlayerState.idle;
     }
 
     void SetPlayerSpeed(float speed, float accel)
@@ -64,11 +70,23 @@ public class BlancheController : MonoBehaviour {
             playerVelocity += (playerAccel * moveDir);
             playerVelocity = Vector3.ClampMagnitude(playerVelocity, playerMaxSpeed);
             playerVelocity.y = rb.velocity.y;
-            if (Input.GetButtonDown("Jump") && playerHealthStam.playerStamina >= jumpCost)
+            if (playerState == PlayerState.idle)
             {
-                playerHealthStam.playerStamina -= jumpCost;
-                playerVelocity.y += jumpStrength;
+                if (Input.GetButtonDown("Jump") && playerHealthStam.playerStamina >= jumpCost)
+                {
+                    playerHealthStam.playerStamina -= jumpCost;
+                    playerVelocity.y += jumpStrength;
+                }
+                else if (Input.GetButtonDown("Fire3") && playerHealthStam.playerStamina >= attackCost)
+                {
+                    playerState = PlayerState.lightAttack;
+                    playerHealthStam.playerStamina -= attackCost;
+                    sword.GetComponent<Rigidbody>().maxAngularVelocity = 200f;
+                    sword.GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, 200f, 0f);
+                }
+                    
             }
+            if (playerHealthStam.playerHealth <= 0) playerState = PlayerState.dead;
         }
         else
         {
@@ -83,5 +101,11 @@ public class BlancheController : MonoBehaviour {
         v3Rotate.y += cy;
 
         transform.localEulerAngles = v3Rotate;
+    }
+
+    void Dead()
+    {
+        GameController instance = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        instance.gameOver = true;
     }
 }

@@ -14,7 +14,6 @@ public class HealthStamDisplay : MonoBehaviour {
   public Slider healthSlider;
   public Slider staminaSlider;
   bool stamRegen;
-  public bool dead;
 
 	// Use this for initialization
 	void Start () {
@@ -32,7 +31,8 @@ public class HealthStamDisplay : MonoBehaviour {
   public void TakeDamage(int amount) {
     playerHealth -= amount;
     healthSlider.value = playerHealth;
-    if (playerHealth < 0) dead = true;
+    BlancheController player = GameObject.FindGameObjectWithTag("Blanche").GetComponent<BlancheController>();
+        if (playerHealth < 0) player.playerState = BlancheController.PlayerState.dead;
   }
 
   private IEnumerator StaminaRegen() {

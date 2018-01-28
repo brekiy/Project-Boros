@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Blanche
   - Gregg
+  - BlancheBody
+  - GreggBody
+  - Steward
   layers:
   - Default
   - TransparentFX
