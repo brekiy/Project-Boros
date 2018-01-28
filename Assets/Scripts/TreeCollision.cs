@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class TreeCollision : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+    private void Start()
+    {
+        
+    }
+
+    // Use this for initialization
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<HealthScript>())
+        {
+            other.GetComponent<HealthScript>().DoDamage(5f, 50);
+        }
+        
+    }
 }

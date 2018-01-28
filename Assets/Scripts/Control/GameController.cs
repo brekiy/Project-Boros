@@ -10,8 +10,6 @@ public class GameController : MonoBehaviour {
   public bool paused = false;
   public bool earthDefeated = false;
 
-  public HealthStamDisplay healthDisplay;
-
   void Awake() {
     if (instance == null) instance = this;
     else if (instance != this) Destroy(gameObject);
