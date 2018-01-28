@@ -28,10 +28,9 @@ public class BlancheController : MonoBehaviour {
     Vector3 v3Rotate = Vector3.zero;
 
     Rigidbody rb;
-
-    GameObject sword;
+    
     //State
-    public enum PlayerState { idle, lightAttack, heavyAttack, dead }
+    public enum PlayerState {idle, lightAttack, heavyAttack, dead}
     public PlayerState playerState;
 
     // Use this for initialization
@@ -39,7 +38,6 @@ public class BlancheController : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
         playerHealthStam = GetComponent<HealthStamDisplay>();
-        sword = GameObject.FindGameObjectWithTag("Steward");
         playerState = PlayerState.idle;
     }
 
@@ -72,17 +70,15 @@ public class BlancheController : MonoBehaviour {
             playerVelocity.y = rb.velocity.y;
             if (playerState == PlayerState.idle)
             {
-                if (Input.GetButtonDown("Jump") && playerHealthStam.playerStamina >= jumpCost)
+                if (Input.GetButtonDown("MovementAction") && playerHealthStam.playerStamina >= jumpCost)
                 {
                     playerHealthStam.playerStamina -= jumpCost;
                     playerVelocity.y += jumpStrength;
                 }
-                else if (Input.GetButtonDown("Fire3") && playerHealthStam.playerStamina >= attackCost)
+                else if (Input.GetButtonDown("Special") && playerHealthStam.playerStamina >= attackCost)
                 {
                     playerState = PlayerState.lightAttack;
                     playerHealthStam.playerStamina -= attackCost;
-                    sword.GetComponent<Rigidbody>().maxAngularVelocity = 200f;
-                    sword.GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, 200f, 0f);
                 }
                     
             }

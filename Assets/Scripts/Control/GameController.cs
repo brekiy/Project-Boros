@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-    if (healthDisplay.playerHealth < 0) gameOver = true;
+    //if (healthDisplay.playerHealth < 0) gameOver = true;
     if (!gameOver && Input.GetKeyDown(KeyCode.P)) {
       if (!paused) {
         paused = true;
