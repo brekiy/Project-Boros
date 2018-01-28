@@ -132,6 +132,7 @@ public class EarthBossController : MonoBehaviour {
     nav.speed = attackingSpeed;
     anim.SetBool("Moving", false);
     anim.SetBool("Action", true);
+    anim.SetInteger("ActionIndex", 6);
   }
 
   private void Dead() {

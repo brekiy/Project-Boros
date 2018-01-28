@@ -99,7 +99,27 @@ ModelImporter:
     13700000: Earth
     13700002: Shield
     13700004: Tree
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skull
+    second: {fileID: 2100000, guid: 7cee61a7657ae264f8eaea7705df8004, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Symbol
+    second: {fileID: 2100000, guid: 8ecb977f0a54e3b4c9ca68169581baee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 96a8712a43cccf648b4356d0af09306f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood Core
+    second: {fileID: 2100000, guid: e7527e7f4e07e394cba626e94949e8ba, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
