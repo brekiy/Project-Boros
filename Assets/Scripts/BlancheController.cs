@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BlancheController : MonoBehaviour {
 
-    //State
+  //State
+
+  HealthStamDisplay playerHealthStam;
 
     private string playerState = "idle";
     
@@ -19,6 +21,7 @@ public class BlancheController : MonoBehaviour {
     Vector3 gravity = Vector3.zero;
 
     private float jumpStrength = 9f;
+    public float jumpCost;
 
     Vector3 playerVelocity = Vector3.zero;
     Vector3 moveDir = Vector3.zero;
@@ -31,6 +34,7 @@ public class BlancheController : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerHealthStam = GetComponent<HealthStamDisplay>();
     }
 
     void SetPlayerSpeed(float speed, float accel)
@@ -60,8 +64,9 @@ public class BlancheController : MonoBehaviour {
             playerVelocity += (playerAccel * moveDir);
             playerVelocity = Vector3.ClampMagnitude(playerVelocity, playerMaxSpeed);
             playerVelocity.y = rb.velocity.y;
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && playerHealthStam.playerStamina >= jumpCost)
             {
+                playerHealthStam.playerStamina -= jumpCost;
                 playerVelocity.y += jumpStrength;
             }
         }

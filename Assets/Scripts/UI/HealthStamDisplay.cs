@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class HealthStamDisplay : MonoBehaviour {
 
   public int startingHealth;
-  int maxStamina = 100;
+  float maxStamina = 100f;
   public int startingStamina;
   public float staminaRecover = 1f;
-  [HideInInspector] public float playerHealth; //current player hp
-  [HideInInspector] public float playerStamina;
+  public float playerHealth; //current player hp
+  public float playerStamina;
   public Slider healthSlider;
   public Slider staminaSlider;
+  bool stamRegen;
   public bool dead;
 
 	// Use this for initialization
@@ -21,13 +22,12 @@ public class HealthStamDisplay : MonoBehaviour {
     playerStamina = startingStamina;
     healthSlider.value = startingHealth;
     staminaSlider.value = startingStamina;
-    StartCoroutine(StaminaRegen());
   }
 	
 	// Update is called once per frame
 	void Update () {
-    
-	}
+    if(!stamRegen && playerStamina < maxStamina) StartCoroutine(StaminaRegen());
+  }
 
   public void TakeDamage(int amount) {
     playerHealth -= amount;
@@ -36,11 +36,12 @@ public class HealthStamDisplay : MonoBehaviour {
   }
 
   private IEnumerator StaminaRegen() {
+    stamRegen = true;
     if (playerStamina < maxStamina) {
       playerStamina += staminaRecover;
       staminaSlider.value = playerStamina;
-      yield return new WaitForSeconds(4);
+      yield return new WaitForSeconds(0.2f);
     }
-    
+    stamRegen = false;
   }
 }

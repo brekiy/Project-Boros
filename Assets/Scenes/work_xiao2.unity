@@ -113,30 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &127431295 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1779994250405850, guid: 994bb9cb9724fa1478026941b9dc345f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1616948930}
---- !u!114 &127431302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 127431295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdcaf541e3473d34bbc807de31b32065, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 100
-  startingStamina: 0
-  staminaRecover: 1
-  playerHealth: 0
-  playerStamina: 0
-  healthSlider: {fileID: 1954460145}
-  staminaSlider: {fileID: 1955114325}
-  dead: 0
 --- !u!1 &202728159
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.09019608, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1267,6 +1243,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114223032845951566, guid: 994bb9cb9724fa1478026941b9dc345f,
+        type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1954460145}
+    - target: {fileID: 114223032845951566, guid: 994bb9cb9724fa1478026941b9dc345f,
+        type: 2}
+      propertyPath: staminaSlider
+      value: 
+      objectReference: {fileID: 1955114325}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 994bb9cb9724fa1478026941b9dc345f, type: 2}
   m_IsPrefabParent: 0
@@ -1613,7 +1599,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 1, b: 0.08965516, a: 1}
+    m_NormalColor: {r: 0, g: 1, b: 0.09019608, a: 1}
     m_HighlightedColor: {r: 0, g: 1, b: 0.09019608, a: 1}
     m_PressedColor: {r: 0, g: 1, b: 0.09019608, a: 1}
     m_DisabledColor: {r: 0, g: 1, b: 0.09019608, a: 1}
