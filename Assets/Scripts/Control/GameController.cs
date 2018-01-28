@@ -8,8 +8,9 @@ public class GameController : MonoBehaviour {
   public bool gameOver = false;
   public int deaths = 0;
 
-  public bool paused;
+  public bool paused = false;
   public string curBody;
+  public bool earthDefeated = false;
 
   void Awake() {
     if (instance == null) instance = this;
@@ -19,7 +20,15 @@ public class GameController : MonoBehaviour {
 
   // Use this for initialization
   void Start () {
-		
+    if (!gameOver && Input.GetKeyDown(KeyCode.P)) {
+      if (!paused) {
+        paused = true;
+        Time.timeScale = 0;
+      } else {
+        paused = false;
+        Time.timeScale = 1;
+      }
+    }
 	}
 	
 	// Update is called once per frame
