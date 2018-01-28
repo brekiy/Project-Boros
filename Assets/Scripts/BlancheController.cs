@@ -23,7 +23,7 @@ public class BlancheController : MonoBehaviour {
     private float jumpStrength = 9f;
     public float jumpCost;
 
-    Vector3 playerVelocity = Vector3.zero;
+    public Vector3 playerVelocity = Vector3.zero;
     Vector3 moveDir = Vector3.zero;
 
     Vector3 v3Rotate = Vector3.zero;
