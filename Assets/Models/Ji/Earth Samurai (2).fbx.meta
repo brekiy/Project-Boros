@@ -1,0 +1,238 @@
+fileFormatVersion: 2
+guid: 6b636dbc1ae467c4895745e20b6c964d
+timeCreated: 1517124742
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Bicep.L
+    100002: Bicep.R
+    100004: Chest
+    100006: Earth
+    100008: Earth Rig
+    100010: //RootNode
+    100012: Foot.L
+    100014: Foot.L_end
+    100016: Foot.R
+    100018: Foot.R_end
+    100020: Forearm.L
+    100022: Forearm.R
+    100024: Hand.L
+    100026: Hand.L_end
+    100028: Hand.R
+    100030: Head
+    100032: Head_end
+    100034: Hip.L
+    100036: Hip.R
+    100038: LowerLeg.L
+    100040: LowerLeg.R
+    100042: Neck
+    100044: Shield
+    100046: Shield 1
+    100048: Shield_end
+    100050: Shoulder.L
+    100052: Shoulder.R
+    100054: Sword
+    100056: Sword_end
+    100058: Tree
+    100060: UpperLeg.L
+    100062: UpperLeg.R
+    400000: Bicep.L
+    400002: Bicep.R
+    400004: Chest
+    400006: Earth
+    400008: Earth Rig
+    400010: //RootNode
+    400012: Foot.L
+    400014: Foot.L_end
+    400016: Foot.R
+    400018: Foot.R_end
+    400020: Forearm.L
+    400022: Forearm.R
+    400024: Hand.L
+    400026: Hand.L_end
+    400028: Hand.R
+    400030: Head
+    400032: Head_end
+    400034: Hip.L
+    400036: Hip.R
+    400038: LowerLeg.L
+    400040: LowerLeg.R
+    400042: Neck
+    400044: Shield
+    400046: Shield 1
+    400048: Shield_end
+    400050: Shoulder.L
+    400052: Shoulder.R
+    400054: Sword
+    400056: Sword_end
+    400058: Tree
+    400060: UpperLeg.L
+    400062: UpperLeg.R
+    2100000: Wood
+    2100002: Wood Core
+    2100004: Skull
+    2100006: Symbol
+    4300000: Earth
+    4300002: Shield
+    4300004: Tree
+    7400000: Earth Rig|Ground Strike
+    7400002: Earth Rig|Idle
+    7400004: Earth Rig|Kick
+    7400006: Earth Rig|Light Attack 1
+    7400008: Earth Rig|Light Attack 2
+    7400010: Earth Rig|Shield
+    7400012: Earth Rig|Shield Bash
+    7400014: Earth Rig|Sprint
+    7400016: Earth Rig|Walk
+    7400018: Earth Rig|Whirlwind
+    7400020: Earth Rig|Whirlwind Stance
+    9500000: //RootNode
+    13700000: Earth
+    13700002: Shield
+    13700004: Tree
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skull
+    second: {fileID: 2100000, guid: 7cee61a7657ae264f8eaea7705df8004, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Symbol
+    second: {fileID: 2100000, guid: 8ecb977f0a54e3b4c9ca68169581baee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 96a8712a43cccf648b4356d0af09306f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood Core
+    second: {fileID: 2100000, guid: e7527e7f4e07e394cba626e94949e8ba, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'Earth Rig|Ground Strike' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'Chest' has translation animation
+      that will be discarded.\n\t'Hip.L' has translation animation that will be discarded.\n\t'Hip.R'
+      has translation animation that will be discarded.\n\nClip 'Earth Rig|Kick' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Chest' has translation
+      animation that will be discarded.\n\t'Neck' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Hip.L' has translation
+      animation that will be discarded.\n\t'Hip.R' has translation animation that
+      will be discarded.\n\t'Hip.R' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\nClip 'Earth Rig|Light Attack 1' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Chest' has translation animation
+      that will be discarded.\n\t'Neck' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip.L' has translation animation that
+      will be discarded.\n\t'Hip.L' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip.R' has translation animation that
+      will be discarded.\n\t'Hip.R' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\nClip 'Earth Rig|Light Attack 2' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Chest' has translation animation
+      that will be discarded.\n\t'Neck' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip.L' has translation animation that
+      will be discarded.\n\t'Hip.L' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Hip.R' has translation animation that
+      will be discarded.\n\t'Hip.R' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\nClip 'Earth Rig|Shield Bash' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Chest' has translation animation
+      that will be discarded.\n\t'Hip.L' has translation animation that will be discarded.\n\t'Hip.R'
+      has translation animation that will be discarded.\n\nClip 'Earth Rig|Sprint'
+      has import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Neck' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Earth Rig|Walk' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Neck'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Earth Rig|Whirlwind' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest'
+      has translation animation that will be discarded.\n\t'Neck' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'Hip.L' has
+      translation animation that will be discarded.\n\t'Hip.L' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'Hip.R' has
+      translation animation that will be discarded.\n\t'Hip.R' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.00065
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
