@@ -25,8 +25,11 @@ public class GreggController : MonoBehaviour {
     public float medAtkRange;
     public float closeAtkRange;
 
-    enum playerState { walking, chasing, maxAtk, medAtk, closeAtk, dead, idle }
+    enum playerState { walking, running, maxAtk, medAtk, closeAtk, dead, idle, shielding, firstAtk, secondAtk }
     playerState currentState;
+
+    enum buttonState { none, Left, Right, LeftHeavy, RightHeavy, MovementAction, Special, AOE }
+    buttonState inputBuffer;
 
     int delayMovement = 0;
     int delayLook = 0;
@@ -76,6 +79,18 @@ public class GreggController : MonoBehaviour {
         return Physics.Raycast(transform.position + Vector3.up, -Vector3.up, GetComponent<Collider>().bounds.extents.y + 0.5f);
     }
 
+    void InputBuffer()
+    {
+        if (Input.GetButtonDown("AOE")) inputBuffer = buttonState.AOE;
+        if (Input.GetButtonDown("Special")) inputBuffer = buttonState.Special;
+        if (Input.GetButtonDown("MovementAction")) inputBuffer = buttonState.MovementAction;
+        if (Input.GetButtonDown("Left")) inputBuffer = buttonState.Left;
+        if (Input.GetAxis("Heavy") > 0.1) inputBuffer = buttonState.LeftHeavy;
+        if (Input.GetButtonDown("Right")) inputBuffer = buttonState.Right;
+        if (Input.GetAxis("Heavy") < -0.1) inputBuffer = buttonState.RightHeavy;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -86,7 +101,16 @@ public class GreggController : MonoBehaviour {
 
         playerVelocity.y = 0f;
 
-        if (delayMovement < 1)
+        if (currentState == playerState.idle | currentState == playerState.walking)
+        {
+            inputBuffer = buttonState.none;
+        }
+        else
+        {
+            InputBuffer();
+        }
+
+        if (delayMovement < 1 && (currentState != playerState.shielding | Input.GetButtonUp("Left")))
         {
             if (moveDir.magnitude > 0.05f && IsGrounded())
             {
@@ -114,15 +138,40 @@ public class GreggController : MonoBehaviour {
         {
             playerVelocity -= Vector3.ClampMagnitude(playerVelocity, playerAccel * 0.5f);
 
-            if (currentState == playerState.idle | currentState == playerState.walking | delayDM > 0)
+            if ((currentState == playerState.firstAtk) && (inputBuffer == buttonState.Right) && delayMovement > 0)
             {
-                if (currentState == playerState.walking | delayDM > 0)
+                if (delayMovement < 90)
+                {
+                    anim.SetBool("Moving", false);
+                    anim.SetBool("Action", true);
+                    anim.SetInteger("ActionIndex", 10);
+                    currentState = playerState.secondAtk;
+                    delayMovement += 140;
+                    delayLook += 125;
+                }
+                else
+                {
+                    inputBuffer = buttonState.none;
+                }
+                
+            }
+
+            if (currentState == playerState.idle | currentState == playerState.walking | currentState == playerState.running | delayDM > 0)
+            {
+                if (currentState == playerState.walking | currentState == playerState.running | delayDM > 0)
                 {
                     playerVelocity += (playerAccel * moveDir);
-                    playerVelocity = Vector3.ClampMagnitude(playerVelocity, playerMaxSpeed);
+                    if (currentState != playerState.running)
+                    {
+                        playerVelocity = Vector3.ClampMagnitude(playerVelocity, playerMaxSpeed);
+                    }
+                    else
+                    {
+                        playerVelocity = transform.forward * 11;
+                    }
                 }
 
-                if (Input.GetButtonDown("Special"))
+                if (Input.GetAxis("Heavy") > 0.1)
                 {
                     anim.SetBool("Moving", false);
                     anim.SetBool("Action", true);
@@ -133,6 +182,65 @@ public class GreggController : MonoBehaviour {
                     delayDM = 30;
                     delayDL = 60;
                 }
+
+                if (Input.GetButtonDown("MovementAction"))
+                {
+                    anim.SetBool("Moving", false);
+                    anim.SetBool("Action", true);
+                    anim.SetInteger("ActionIndex", 5);
+                    currentState = playerState.running;
+                    delayMovement = 55;
+                    delayDM = 5;
+                }
+
+                if (Input.GetButtonDown("Right"))
+                {
+                    if (currentState != playerState.firstAtk)
+                    {
+                        anim.SetBool("Moving", false);
+                        anim.SetBool("Action", true);
+                        anim.SetInteger("ActionIndex", 3);
+                        currentState = playerState.firstAtk;
+                        delayMovement = 280;
+                        delayLook = 150;
+                        delayDM = 10;
+                        delayDL = 150;
+                    }
+                    
+                }
+
+                if (Input.GetButtonDown("AOE"))
+                {
+                    anim.SetBool("Moving", false);
+                    anim.SetBool("Action", true);
+                    anim.SetInteger("ActionIndex", 7);
+                    currentState = playerState.maxAtk;
+                    delayMovement = 80;
+                    delayLook = 70;
+                    delayDM = 30;
+                    delayDL = 60;
+                }
+
+                if (Input.GetButtonDown("Special"))
+                {
+                    anim.SetBool("Moving", false);
+                    anim.SetBool("Action", true);
+                    anim.SetInteger("ActionIndex", 6);
+                    currentState = playerState.maxAtk;
+                    delayMovement = 80;
+                    delayLook = 70;
+                    delayDM = 30;
+                    delayDL = 60;
+                }
+
+                if (Input.GetButtonDown("Left"))
+                {
+                    anim.SetBool("Moving", false);
+                    anim.SetBool("Action", true);
+                    anim.SetInteger("ActionIndex", 1);
+                    currentState = playerState.shielding;
+                }
+
             }
             playerVelocity.y = rb.velocity.y;
         }
