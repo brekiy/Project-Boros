@@ -6,7 +6,7 @@ public class HealthScript : MonoBehaviour {
 
     float entityMaxHealth = 0;
     float entityHealth = 0;
-    int invulFrames = 0;
+    public int invulFrames = 0;
 
     // Use this for initialization
 

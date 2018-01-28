@@ -40,7 +40,6 @@ public class StaminaScript : MonoBehaviour {
     
     private void Update()
     {
-        Debug.Log(entityStamina);
         regenDelay -= 60*Time.deltaTime;
         regenDelay = Mathf.Max(regenDelay, 0);
         if (regenDelay == 0)

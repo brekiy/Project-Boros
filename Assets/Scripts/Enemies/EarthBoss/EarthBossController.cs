@@ -8,7 +8,7 @@ public class EarthBossController : MonoBehaviour {
   NavMeshAgent nav;
   Vector3 playerPos;
   Vector3 selfPos;
-  public int bossHealth;
+  HealthScript bossHealth;
   private bool lowHealth;
   Animator anim;
   Rigidbody rigid;
@@ -34,17 +34,34 @@ public class EarthBossController : MonoBehaviour {
     anim = GetComponent<Animator>();
     nav = GetComponent<NavMeshAgent>();
     rigid = GetComponent<Rigidbody>();
-    playerPos = GameObject.Find("Player").transform.position;
+    bossHealth = GetComponent<HealthScript>();
+    bossHealth.SetHealth(200,200);
+    
+    if (GameObject.FindGameObjectWithTag("Gregg"))
+    {
+        playerPos = GameObject.FindGameObjectWithTag("Gregg").transform.position;
+    }
+    if (GameObject.FindGameObjectWithTag("Blanche"))
+    {
+        playerPos = GameObject.FindGameObjectWithTag("Blanche").transform.position;
+    }
+
     selfPos = nav.transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-    playerPos = GameObject.Find("Player").transform.position;
-    selfPos = nav.transform.position;
+        if (GameObject.FindGameObjectWithTag("Gregg"))
+        {
+            playerPos = GameObject.FindGameObjectWithTag("Gregg").transform.position;
+        }
+        if (GameObject.FindGameObjectWithTag("Blanche"))
+        {
+            playerPos = GameObject.FindGameObjectWithTag("Blanche").transform.position;
+        }
+        selfPos = nav.transform.position;
     nav.SetDestination(playerPos);
     
-    Debug.Log(curState);
     StateLogic();
     StartCoroutine(StateMachine());
   }
@@ -72,7 +89,7 @@ public class EarthBossController : MonoBehaviour {
     else if (distance < closeAtkRange) //do the close range atk
       curState = aiState.closeAtk;
     else anim.SetBool("Action", false);
-    if (bossHealth <= 0) curState = aiState.dead;
+    if (bossHealth.GetHealth() <= 0) curState = aiState.dead;
   }
 
   private IEnumerator StateMachine() {
