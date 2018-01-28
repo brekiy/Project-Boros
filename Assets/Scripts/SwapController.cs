@@ -23,7 +23,7 @@ public class SwapController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("LeftHeavy"))
+		if (Input.GetButtonDown("Interact"))
         {
             if (currentBody == "Blanche")
             {

@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BlancheController : MonoBehaviour {
-
-   
-
-    HealthStamDisplay playerHealthStam;
     
     //Physics
 
@@ -33,12 +29,20 @@ public class BlancheController : MonoBehaviour {
     public enum PlayerState {idle, lightAttack, heavyAttack, dead}
     public PlayerState playerState;
 
+    HealthScript health;
+    StaminaScript stamina;
+
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        playerHealthStam = GetComponent<HealthStamDisplay>();
         playerState = PlayerState.idle;
+        health = GetComponent<HealthScript>();
+        stamina = GetComponent<StaminaScript>();
+
+        health.SetHealth(100, 100);
+        stamina.SetStamina(100, 100);
+        stamina.SetRegen(50*Time.deltaTime);
     }
 
     void SetPlayerSpeed(float speed, float accel)
@@ -70,19 +74,16 @@ public class BlancheController : MonoBehaviour {
             playerVelocity.y = rb.velocity.y;
             if (playerState == PlayerState.idle)
             {
-                if (Input.GetButtonDown("MovementAction") && playerHealthStam.playerStamina >= jumpCost)
+                if (Input.GetButtonDown("MovementAction"))
                 {
-                    playerHealthStam.playerStamina -= jumpCost;
                     playerVelocity.y += jumpStrength;
                 }
-                else if (Input.GetButtonDown("Special") && playerHealthStam.playerStamina >= attackCost)
+                else if (Input.GetButtonDown("Special"))
                 {
                     playerState = PlayerState.lightAttack;
-                    playerHealthStam.playerStamina -= attackCost;
                 }
                     
             }
-            if (playerHealthStam.playerHealth <= 0) playerState = PlayerState.dead;
         }
         else
         {

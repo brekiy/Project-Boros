@@ -7,13 +7,19 @@ public class DeadBodyScript : MonoBehaviour {
     Rigidbody rb;
     Vector3 playerVelocity = Vector3.zero;
 
-	// Use this for initialization
-	void Start () {
-		rb = GetComponent<Rigidbody>();
+    // Use this for initialization
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Awake()
+    {
+        this.GetComponent<HealthScript>().SetHealth(100f,100f);
+    }
+
+    // Update is called once per frame
+    void Update () {
         playerVelocity = rb.velocity;
         playerVelocity.y = 0f;
         playerVelocity -= Vector3.ClampMagnitude(playerVelocity, 0.5f);
