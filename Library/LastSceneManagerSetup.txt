@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Hub.unity
+- path: Assets/Scenes/work_xiao.unity
   isLoaded: 1
   isActive: 1

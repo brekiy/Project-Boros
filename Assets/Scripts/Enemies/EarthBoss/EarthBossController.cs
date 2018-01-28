@@ -17,6 +17,7 @@ public class EarthBossController : MonoBehaviour {
   //movement vars
   public float chaseSpeed;
   public float walkSpeed;
+  private float attackingSpeed = 0.01f;
   public float chaseDist;
 
   //attack/range vars
@@ -113,41 +114,27 @@ public class EarthBossController : MonoBehaviour {
   }
 
   private void MaxAttack() {
-    nav.speed = 0;
+    nav.speed = attackingSpeed;
     anim.SetBool("Moving", false);
     anim.SetBool("Action", true);
     anim.SetInteger("ActionIndex", 2);
   }
 
   private void MedAttack() {
-    nav.speed = 0;
+    nav.speed = attackingSpeed;
     anim.SetBool("Moving", false);
     anim.SetBool("Action", true);
-    if (Random.Range(0, 5) < 1) anim.SetInteger("ActionIndex", 3);
-    else {
-      anim.SetBool("Spinning", true);
-      anim.SetInteger("ActionIndex", 7);
-    }
+    if (Random.Range(0, 5) < 4) anim.SetInteger("ActionIndex", 3);
+    else anim.SetInteger("ActionIndex", 7);
   }
 
   private void CloseAttack() {
-    nav.speed = 0;
+    nav.speed = attackingSpeed;
     anim.SetBool("Moving", false);
     anim.SetBool("Action", true);
   }
 
   private void Dead() {
 
-  }
-
-  public IEnumerator Spin() {
-    anim.GetComponent<Rigidbody>().AddTorque(new Vector3(-100, 0, 0));
-    yield return new WaitForSeconds(1f);
-  }
-
-  public IEnumerator Stop() {
-    anim.GetComponent<Rigidbody>().AddTorque(new Vector3(100, 0, 0));
-    anim.SetBool("Spinning", false);
-    yield return new WaitForSeconds(0.1f);
   }
 }
